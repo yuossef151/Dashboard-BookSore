@@ -1,7 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { loginAPI } from "../services/mockData";
 
 export default function Login() {
@@ -11,7 +9,6 @@ export default function Login() {
     password: "",
   });
 
-  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -20,16 +17,19 @@ export default function Login() {
       [name]: value,
     }));
   };
+
   const loginMutation = useMutation({
     mutationFn: (data) => loginAPI(data),
 
-onSuccess: (res) => {
+    onSuccess: (res) => {
       console.log("LOGIN SUCCESS:", res.data);
 
       sessionStorage.setItem("token", res.data.data.token);
       sessionStorage.setItem("email", res.data.data.email);
 
-      navigate("/"); 
+      // التوجيه الصحيح المتوافق مع مسار المشروع (سواء محلياً أو على GitHub Pages)
+      const base = import.meta.env.BASE_URL;
+      window.location.href = base; 
     },
 
     onError: (err) => {
@@ -79,9 +79,10 @@ onSuccess: (res) => {
 
         <button
           type="submit"
-          className="w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          disabled={loginMutation.isPending}
+          className="w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
         >
-          Login
+          {loginMutation.isPending ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>

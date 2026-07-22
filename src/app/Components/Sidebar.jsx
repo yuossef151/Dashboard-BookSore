@@ -24,11 +24,12 @@ export function Sidebar() {
     { path: "/Messages", label: "Messages", icon: MessageSquare  },
     { path: "/users", label: "Users", icon: Users },
   ];
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("email");
-    window.location.href = "/login";
-  };
+const handleLogout = () => {
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("email");
+  const base = import.meta.env.BASE_URL;
+  window.location.href = `${base}login`.replace('//', '/');
+};
   const isActive = (path) => {
     if (path === "/") {
       return location.pathname === "/";
