@@ -23,14 +23,13 @@ export default function Login() {
   const loginMutation = useMutation({
     mutationFn: (data) => loginAPI(data),
 
-    onSuccess: (res) => {
+onSuccess: (res) => {
       console.log("LOGIN SUCCESS:", res.data);
-      // navigate("/");
 
       sessionStorage.setItem("token", res.data.data.token);
       sessionStorage.setItem("email", res.data.data.email);
 
-      window.location.href = "/";
+      navigate("/"); 
     },
 
     onError: (err) => {
