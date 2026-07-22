@@ -7,19 +7,23 @@ import react from '@vitejs/plugin-react'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export default defineConfig({
-  base: isProduction ? '/Dashboard-BookSore/' : '/',
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+export default defineConfig(({ command }) => {
+  const isProduction = command === 'build'
+
+  return {
+    base: isProduction ? '/Dashboard-BookSore/' : '/',
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
-  },
     server: {
       port: 3000,
-    watch: {
-      usePolling: true,
+      watch: {
+        usePolling: true,
+      },
     },
-  },
-  assetsInclude: ['**/*.svg', '**/*.csv'],
+    assetsInclude: ['**/*.svg', '**/*.csv'],
+  }
 })
