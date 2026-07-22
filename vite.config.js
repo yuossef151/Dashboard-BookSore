@@ -11,7 +11,7 @@ export default defineConfig(({ command }) => {
   const isProduction = command === 'build'
 
   return {
-    base: isProduction ? '/Dashboard-BookSore/' : '/',
+    base: '/Dashboard-BookSore/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

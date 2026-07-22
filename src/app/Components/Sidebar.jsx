@@ -14,10 +14,9 @@ import { useStore } from "../hooks/useStore";
 export function Sidebar() {
   const location = useLocation();
     const {isOpen, setIsOpen ,  resetAllPagesExcept, setOrderPage } = useStore();
-
-  // const [] = useState(false);
+const base = import.meta.env.BASE_URL;
   const navItems = [
-    { path: "/", label: "Dashboard", icon: LayoutDashboard },
+    { path: "/", label: "Dashboard", icon: LayoutDashboard , isAbsolute: true},
     { path: "/books", label: "Books", icon: BookOpen },
     { path: "/categories", label: "Categories", icon: FolderOpen },
     { path: "/orders", label: "Orders", icon: ShoppingCart },
@@ -27,8 +26,9 @@ export function Sidebar() {
 const handleLogout = () => {
   sessionStorage.removeItem("token");
   sessionStorage.removeItem("email");
-  const base = import.meta.env.BASE_URL;
-  window.location.href = `${base}login`.replace('//', '/');
+ 
+  const base = import.meta.env.BASE_URL; 
+    window.location.href = `${window.location.origin}${base}login`;
 };
   const isActive = (path) => {
     if (path === "/") {

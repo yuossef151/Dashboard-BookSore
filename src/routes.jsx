@@ -13,38 +13,38 @@ import Messages from "./app/pages/Messages";
 
 export const router = createBrowserRouter(
   [
-  {
-    path: "/login",
-    Component: Login,
-  },
+    {
+      path: "/login",
+      Component: Login,
+    },
 
-  // 🔒 Protected area
-  {
-    path: "/",
-    element: <ProtectedRoute />,
-    children: [
-      {
-        path: "/",
-        Component: Layout,
-        children: [
-          { index: true, Component: Dashboard },
-          { path: "books", Component: Books },
-          { path: "books/:id", Component: SingleBook },
-          { path: "categories", Component: Categories },
-          { path: "orders", Component: Orders },
-          { path: "users", Component: Users },
-          { path: "Messages", Component: Messages },
-        ],
-      },
-    ],
-  },
+    // 🔒 Protected area
+    {
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: "",
+          Component: Layout,
+          children: [
+            { index: true, Component: Dashboard },
+            { path: "books", Component: Books },
+            { path: "books/:id", Component: SingleBook },
+            { path: "categories", Component: Categories },
+            { path: "orders", Component: Orders },
+            { path: "users", Component: Users },
+            { path: "Messages", Component: Messages },
+          ],
+        },
+      ],
+    },
 
+    {
+      path: "*",
+      Component: NotFound,
+    },
+  ],
   {
-    path: "*",
-    Component: NotFound,
-  },
-],
-{
-    basename: "/Dashboard-BookSore", 
+    basename: "/Dashboard-BookSore/",
   }
 );
