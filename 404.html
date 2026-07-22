@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard-BookSore</title>
     <script type="text/javascript">
-      var segmentCount = 1;
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      var pathSegmentsToKeep = 1;
+
       var l = window.location;
-      var p = l.pathname.split('/');
+      var repoBase = l.pathname.split('/')[1]; 
       
-      var redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        '/' + p[1] + '/?p=/' + p.slice(segmentCount + 1).join('/') +
-        (l.search ? '&' + l.search.slice(1) : '') + l.hash;
-        
-      window.location.replace(redirect);
+      // إعادة توجيه المسار بطريقة يفهمها الـ Router
+      window.location.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        '/' + repoBase + '/?p=/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') +
+        (l.search ? '&' + l.search.slice(1) : '') +
+        l.hash
+      );
     </script>
   </head>
   <body>
