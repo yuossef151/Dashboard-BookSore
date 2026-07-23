@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom"; 
 import { Layout } from "./app/Components/Layout";
 import { Dashboard } from "./app/pages/Dashboard";
 import { Books } from "./app/pages/Books";
@@ -11,14 +11,13 @@ import { ProtectedRoute } from "./app/Components/ProtectedRoute";
 import { SingleBook } from "./app/pages/SingleBook";
 import Messages from "./app/pages/Messages";
 
-export const router = createBrowserRouter(
-  [
+export const router = createHashRouter([
     {
       path: "/login",
       Component: Login,
     },
 
-    // 🔒 Protected area
+    
     {
       path: "/",
       element: <ProtectedRoute />,
@@ -43,8 +42,5 @@ export const router = createBrowserRouter(
       path: "*",
       Component: NotFound,
     },
-  ],
-  {
-    basename: "/Dashboard-BookSore/",
-  }
+  ]
 );
