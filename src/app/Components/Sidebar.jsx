@@ -27,8 +27,7 @@ const handleLogout = () => {
   sessionStorage.removeItem("token");
   sessionStorage.removeItem("email");
  
-  const base = import.meta.env.BASE_URL; 
-    window.location.href = `${window.location.origin}${base}login`;
+ window.location.hash = "#/login";
 };
   const isActive = (path) => {
     if (path === "/") {
