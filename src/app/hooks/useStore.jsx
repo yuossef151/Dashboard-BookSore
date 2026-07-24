@@ -44,8 +44,6 @@ export function StoreProvider({ children }) {
     () => Number(localStorage.getItem("msgPage")) || 1,
   );
 
-  // Books CRUD
-
   useEffect(() => {
     localStorage.setItem("bookPage", page);
   }, [page]);
@@ -79,7 +77,6 @@ export function StoreProvider({ children }) {
       };
     },
   });
-  // if (error) console.log(error);
   const book = data?.books || [];
   const meta = data?.meta;
 
@@ -169,7 +166,6 @@ export function StoreProvider({ children }) {
     deleteimgMutation.mutate(id);
   };
 
-  // Categories CRUD
 
   const {
     data: Categorie,
@@ -208,7 +204,6 @@ export function StoreProvider({ children }) {
     onError: (error) => {},
   });
   const updateCategory = (id, data) => {
-    // const payload = updatePayload(data);
     updatecategoryMutation.mutate({ id, data });
   };
 

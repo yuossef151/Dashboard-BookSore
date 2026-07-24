@@ -1,4 +1,4 @@
-// Mock data for the bookstore dashboard
+
 
 import axios from "axios";
 
@@ -41,7 +41,7 @@ export const createBookPayload = (b) => ({
   bookFormat: b.format,
   lang: b.lang,
   asin_code: b.asinCode,
-  image: b.image ? [b.image] : [], // 👈 مهم
+  image: b.image ? [b.image] : [],
 });
 
 export const updateBookPayload = (b) => ({

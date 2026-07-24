@@ -13,20 +13,18 @@ export function Categories() {
     categpage,
     setcategPage,
     isCategoriesLoading: loading,
-    error3, // افترضنا أن خطأ التصنيفات مخزن في error3 (يمكنك تعديله ليطابق اسم المتغير في الـ Store لديك)
+    error3, 
   } = useStore();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // لو في خطأ حقيقي غير الـ 401، اعرضه
   const hasRealError = error3 && error3.response?.status !== 401;
 
   if (hasRealError) {
     return <div className="p-6 text-red-600">Error: {error3.message}</div>;
   }
 
-  // هل التصنيفات فارغة سواء لعدم وجود بيانات أو بسبب خطأ 401؟
   const isCategoriesEmpty = !Categorie?.items || Categorie.items.length === 0 || (error3 && error3.response?.status === 401);
 
   const handleAddCategory = () => {
@@ -136,7 +134,6 @@ export function Categories() {
         </div>
       )}
 
-      {/* إخفاء الـ Pagination أثناء التحميل أو إذا كانت القائمة فارغة */}
       {!loading && !isCategoriesEmpty && (
         <div className="flex gap-10 mt-6 items-center justify-center">
           <button

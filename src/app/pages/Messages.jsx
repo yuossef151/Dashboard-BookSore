@@ -5,15 +5,12 @@ import { ImSpinner2 } from "react-icons/im";
 export default function Messages() {
   const { Messagepage, setMessagePage, Message, isMessagesLoading, error6 } = useStore();
 
-  // لو الخطأ ليس 401 (يعني خطأ حقيقي في السيرفر)، اعرضه. 
-  // أما لو الخطأ 401، سنتجاهله ونسمح للصفحة بعرض حالة الفراغ بشكل طبيعي.
   const hasRealError = error6 && error6.response?.status !== 401;
 
   if (hasRealError) {
     return <div className="p-6 text-red-600">Error: {error6.message}</div>;
   }
 
-  // هل القائمة فارغة سواء بسبب عدم وجود بيانات أو بسبب خطأ 401؟
   const isMessageEmpty = !Message?.items || Message.items.length === 0 || (error6 && error6.response?.status === 401);
 
   return (
@@ -60,7 +57,6 @@ export default function Messages() {
           </div>
         )}
 
-        {/* إخفاء الـ Pagination لو مفيش رسائل أو حدث خطأ 401 */}
         {!isMessagesLoading && !isMessageEmpty && (
           <div className="flex gap-10 mt-6 items-center justify-center">
             <button

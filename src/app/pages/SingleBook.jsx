@@ -42,7 +42,6 @@ const activeImage =
       </button>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden grid md:grid-cols-2 gap-6">
-        {/* Image */}
         <div className="h-[400px] bg-gray-100">
           <img
             src={activeImage?.image}
@@ -51,7 +50,6 @@ const activeImage =
           />
         </div>
 
-        {/* Details */}
         <div className="p-6 flex flex-col justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-800">

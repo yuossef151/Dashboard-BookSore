@@ -27,7 +27,6 @@ export default function Login() {
       sessionStorage.setItem("token", res.data.data.token);
       sessionStorage.setItem("email", res.data.data.email);
 
-      // التوجيه الصحيح المتوافق مع مسار المشروع (سواء محلياً أو على GitHub Pages)
       const base = import.meta.env.BASE_URL;
       window.location.href = base; 
     },
