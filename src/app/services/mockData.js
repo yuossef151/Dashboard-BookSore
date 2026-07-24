@@ -157,6 +157,13 @@ export const OrdarAPI = (page = 1) => {
   });
 };
 
+export const OrdarDetailsAPI = (id) => {
+  return api.get(`/order/${id}` , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 export const updateOrderStatusAPI = (id, status) => {
   return api.post(`/order/update-status/${id}`, { status }, {
     headers: {
@@ -181,4 +188,7 @@ export const MessageAPI = (page = 1) => {
     },
   });
 };
+
+
+
 export const mockUsers = []

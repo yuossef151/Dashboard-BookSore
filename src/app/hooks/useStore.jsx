@@ -10,6 +10,7 @@ import {
   mockUsers,
   normalizeBook,
   OrdarAPI,
+  OrdarDetailsAPI,
   updateBookPayload,
   updateOrderStatusAPI,
   UpdeteBooksAPI,
@@ -237,6 +238,26 @@ export function StoreProvider({ children }) {
     updateOrderStatusMutation.mutate({ id, status });
   };
 
+
+const [selectedOrderId, setSelectedOrderId] = useState(null);
+
+const { data: orderDetails, isLoading: isLoadingDetails } = useQuery({
+    queryKey: ["order-details", selectedOrderId],
+    queryFn: () => OrdarDetailsAPI(selectedOrderId),
+    enabled: !!selectedOrderId,
+    select: (response) => {
+      console.log("Extracted Details:", response.data.Details); 
+      return response.data.data.Details;
+    },
+  });
+
+  const handleToggleDetails = (orderId) => {
+    if (selectedOrderId === orderId) {
+      setSelectedOrderId(null); 
+    } else {
+      setSelectedOrderId(orderId); 
+    }
+  };
   const {
     data: Usersdata,
     isLoading:isLoading4,
@@ -278,6 +299,11 @@ export function StoreProvider({ children }) {
     OrderPage,
     setOrderPage,
     isOrdersLoading,
+
+    selectedOrderId,
+    orderDetails,
+    isLoadingDetails,
+    handleToggleDetails,
 
     users,
     UsersPage,
